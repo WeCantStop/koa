@@ -1,0 +1,25 @@
+{
+  "name": "koademo",
+  "version": "1.0.0",
+  "description": "koa",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/WeCantStop/koa.git"
+  },
+  "keywords": [
+    "koa"
+  ],
+  "author": "Will",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WeCantStop/koa/issues"
+  },
+  "homepage": "https://github.com/WeCantStop/koa#readme",
+  "dependencies": {
+    "koa": "^2.3.0"
+  }
+}
