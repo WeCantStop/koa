@@ -1,0 +1,33 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title test doc
+    body
+        h1 我是主页
+        p can you hear me? 768 to GuangZhou, 货运站到码头
+        ul
+            li.pro-item 陈奕迅
+            li.pro-item 周杰伦
+            li.pro-item 张学友
+            li.pro-item 张惠妹 
+
+        h2 #{test}
+        h3= test2
+        a(href='http://www.baidu.com', target='blank', title='去百度查查') Go Baidu
+
+        - var games = ['英雄联盟','梦幻西游','王者荣耀','Dota2'];
+
+        ul
+            each game, key in games
+                li= game
+ 
+    script.
+        var lis = document.querySelectorAll('.pro-item');
+        lis.forEach( (item,key) => {
+            item.addEventListener('click',function(){
+                console.log(item.innerText);
+            })
+        } )
+            
