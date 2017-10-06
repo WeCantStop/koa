@@ -27,6 +27,7 @@ app.use(views(path.join(__dirname, './views'), {
 
 // generator在中间件的调用
 app.use(convert(loggerGenerator()));
+app.use(bodyparser());
 
 // routes
 app.use(indexRouter.routes(), indexRouter.allowedMethods())
