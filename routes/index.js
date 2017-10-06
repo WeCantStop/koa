@@ -19,9 +19,9 @@ indexRouter.get('/readFile', async(ctx, next) => {
         if (err) {
             console.log(err);
         }
-        ctx.response.body = res;
-        console.log('end readFile');
         console.log(res);
+        ctx.body = JSON.stringify(res);        
+        console.log('end readFile');        
     })
 })
 

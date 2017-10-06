@@ -8,6 +8,7 @@ accountRouter.get('/', async(ctx, next) => {
 })
 
 accountRouter.get('/login', (ctx, next) => {
+    console.log(ctx.req.url);
     ctx.body = '用户登录';
 })
 

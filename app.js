@@ -11,6 +11,7 @@ const bodyparser = require('koa-bodyparser');
 // 路由中间件
 const indexRouter = require('./routes/index');
 const accountRouter = require('./routes/account');
+const testRouter = require('./routes/test');
 
 const app = new Koa();
 const port = 3001;
@@ -30,6 +31,7 @@ app.use(convert(loggerGenerator()));
 // routes
 app.use(indexRouter.routes(), indexRouter.allowedMethods())
 app.use(accountRouter.routes(), accountRouter.allowedMethods())
+app.use(testRouter.routes(), testRouter.allowedMethods())
 
 app.listen(port, () => {
     console.log('Success,listen in port ' + port);
