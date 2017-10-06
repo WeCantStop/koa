@@ -6,6 +6,9 @@ const UserController = require('../controller/user');
 // router 前缀
 testRouter.prefix('/test');
 
-testRouter.post('/connect', UserController.addUser)
+testRouter.post('/connect', UserController.addUser);
+testRouter.post('/getUser', UserController.getUser);
+testRouter.post('/delUser', UserController.delUser);
+
 
 module.exports = testRouter;

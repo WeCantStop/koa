@@ -10,10 +10,6 @@ class UserController {
 
     // post
     async addUser (ctx ,next){
-        // get 请求需要获取参数
-        // var userName = ctx.query.name,
-        //     age = ctx.query.age;
-
         // 处理post请求所需要 bodyparser
         var userName = ctx.request.body.name,
             age = ctx.request.body.age;
@@ -27,8 +23,12 @@ class UserController {
             return;
         }
     
-        if (!userName || !age) {
-            ctx.body = "请填写完整信息";
+        if (!userName) {
+            ctx.body = {
+                code: 1,
+                message: '请填写完整信息',
+                status: 'fail'
+            };
             return;
         }
     
@@ -56,6 +56,55 @@ class UserController {
                 status: 'ok'
             };
         })
+    }
+
+    async getUser (ctx, next){
+        // 连接数据库 
+        mongoose.connect('mongodb://127.0.0.1:27017/koa_db',{useMongoClient: true}, (err) => {
+            if (err){
+                console.log(err);
+            }else{
+                console.log('数据库连接成功');
+            }
+        });
+
+        await UserModel.find({}, (err, doc) => {
+            if (err){
+                console.log(err);
+            }
+            ctx.body = {
+                code: 0,
+                message: 'success',
+                status: 'OK',
+                data: doc
+            }
+        })
+
+    }
+
+    async delUser (ctx, next) {
+        // 连接数据库 
+        mongoose.connect('mongodb://127.0.0.1:27017/koa_db',{useMongoClient: true}, (err) => {
+            if (err){
+                console.log(err);
+            }else{
+                console.log('数据库连接成功');
+            }
+        });
+
+        var userName = ctx.request.body.name;
+        
+        await UserModel.remove({name: userName},(err) => {
+            if (err){
+                conosle.log(err);
+            }
+            ctx.body = {
+                code: 0,
+                message: 'success',
+                status: 'OK'
+            }
+        })
+
     }
 }
 

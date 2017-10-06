@@ -5,6 +5,8 @@ const Router = require('koa-router');
 const views = require('koa-views')
 const static = require('koa-static');
 const path = require('path');
+
+var cors = require('koa2-cors');
 // 中间间
 const loggerGenerator = require('./middlewear/logger');
 const bodyparser = require('koa-bodyparser');
@@ -27,7 +29,10 @@ app.use(views(path.join(__dirname, './views'), {
 
 // generator在中间件的调用
 app.use(convert(loggerGenerator()));
+// 获取post参数的中间件
 app.use(bodyparser());
+// 用来跨域的中间件
+app.use(cors());
 
 // routes
 app.use(indexRouter.routes(), indexRouter.allowedMethods())
