@@ -36,8 +36,6 @@ class UserController {
         mongoose.connect('mongodb://127.0.0.1:27017/koa_db',{useMongoClient: true}, (err) => {
             if (err){
                 console.log(err);
-            }else{
-                console.log('数据库连接成功');
             }
         });
     
@@ -59,18 +57,26 @@ class UserController {
     }
 
     async getUser (ctx, next){
+        // 获取请求值
+        var id = ctx.request.body.id,
+        data= null;
+
+        data = !id ? {} : {_id: id};
+
         // 连接数据库 
         mongoose.connect('mongodb://127.0.0.1:27017/koa_db',{useMongoClient: true}, (err) => {
             if (err){
                 console.log(err);
-            }else{
-                console.log('数据库连接成功');
             }
         });
 
-        await UserModel.find({}, (err, doc) => {
+        await UserModel.find(data, (err, doc) => {
             if (err){
                 console.log(err);
+            }
+            // 只有一个情况下给出一个对象
+            if (!!id && doc.length === 1){
+                doc = doc[0];
             }
             ctx.body = {
                 code: 0,
@@ -87,8 +93,6 @@ class UserController {
         mongoose.connect('mongodb://127.0.0.1:27017/koa_db',{useMongoClient: true}, (err) => {
             if (err){
                 console.log(err);
-            }else{
-                console.log('数据库连接成功');
             }
         });
 
