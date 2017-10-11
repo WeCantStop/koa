@@ -2,7 +2,6 @@
 const mongoose = require('mongoose');
 const UserModel = require('../models/user');
 
-// test
 class UserController {
 
     constructor() {
