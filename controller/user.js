@@ -108,7 +108,39 @@ class UserController {
                 status: 'OK'
             }
         })
+    }
 
+    async updateUserDetail (ctx, next) {
+        // 连接数据库 
+        mongoose.connect('mongodb://127.0.0.1:27017/koa_db',{useMongoClient: true}, (err) => {
+            if (err){
+                console.log(err);
+            }
+        });
+        var reqData = ctx.request.body;
+        await UserModel.findById(reqData._id, async (err,doc) => {
+            if (err){
+                console.log(err);
+            }
+
+            doc.set({
+                name: reqData.name,
+                age: reqData.age,
+                gender: reqData.gender,
+                homeTown: reqData.homeTown
+            })
+
+            await doc.save((err) => {
+                if (err){
+                    conosle.log(err);
+                }
+                ctx.body = {
+                    code: 0,
+                    message: 'save success',
+                    status: 'OK'
+                }
+            })
+        })
     }
 }
 

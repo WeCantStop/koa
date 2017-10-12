@@ -9,6 +9,6 @@ testRouter.prefix('/test');
 testRouter.post('/connect', UserController.addUser);
 testRouter.post('/getUser', UserController.getUser);
 testRouter.post('/delUser', UserController.delUser);
-
+testRouter.post('/updateUserDetail', UserController.updateUserDetail);
 
 module.exports = testRouter;
