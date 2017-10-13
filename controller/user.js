@@ -32,13 +32,6 @@ class UserController {
             return;
         }
     
-        // 连接数据库 
-        mongoose.connect('mongodb://127.0.0.1:27017/koa_db',{useMongoClient: true}, (err) => {
-            if (err){
-                console.log(err);
-            }
-        });
-    
         var user = new UserModel({
             name: userName,
             age: age
@@ -63,13 +56,6 @@ class UserController {
 
         data = !id ? {} : {_id: id};
 
-        // 连接数据库 
-        mongoose.connect('mongodb://127.0.0.1:27017/koa_db',{useMongoClient: true}, (err) => {
-            if (err){
-                console.log(err);
-            }
-        });
-
         await UserModel.find(data, (err, doc) => {
             if (err){
                 console.log(err);
@@ -89,13 +75,6 @@ class UserController {
     }
 
     async delUser (ctx, next) {
-        // 连接数据库 
-        mongoose.connect('mongodb://127.0.0.1:27017/koa_db',{useMongoClient: true}, (err) => {
-            if (err){
-                console.log(err);
-            }
-        });
-
         var userName = ctx.request.body.name;
         
         await UserModel.remove({name: userName},(err) => {
@@ -111,12 +90,6 @@ class UserController {
     }
 
     async updateUserDetail (ctx, next) {
-        // 连接数据库 
-        mongoose.connect('mongodb://127.0.0.1:27017/koa_db',{useMongoClient: true}, (err) => {
-            if (err){
-                console.log(err);
-            }
-        });
         var reqData = ctx.request.body;
         await UserModel.findById(reqData._id, async (err,doc) => {
             if (err){

@@ -5,6 +5,8 @@ const Router = require('koa-router');
 const views = require('koa-views')
 const static = require('koa-static');
 const path = require('path');
+const mongoose = require('mongoose');
+require('babel-register')
 
 var cors = require('koa2-cors');
 // 中间间
@@ -17,6 +19,17 @@ const testRouter = require('./routes/test');
 
 const app = new Koa();
 const port = 3001;
+const db = 'mongodb://127.0.0.1:27017/koa_db';
+
+
+/** mongoose连接数据库 **/
+// 连接数据库 
+mongoose.connect(db,{useMongoClient: true}, (err) => {
+    if (err){
+        console.log(err);
+    }
+    console.log('数据库连接完成,地址为=> ' + db);
+});
 
 // 此处开始堆叠各种中间件
 
