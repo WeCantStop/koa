@@ -132,7 +132,7 @@ class UserController {
 
             await doc.save((err) => {
                 if (err){
-                    conosle.log(err);
+                    console.log(err);
                 }
                 ctx.body = {
                     code: 0,
