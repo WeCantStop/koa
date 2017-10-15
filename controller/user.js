@@ -1,6 +1,8 @@
 // constroller 层
-const mongoose = require('mongoose');
-const UserModel = require('../models/user');
+// const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+// const UserModel = require('../models/user');
+import UserModel from '../models/user';
 
 class UserController {
 

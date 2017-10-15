@@ -1,3 +1,4 @@
+require('babel-register')
 const Koa = require('koa');
 // 使用generate中间件时候需要使用koa-convert封装一下
 const convert = require('koa-convert');
@@ -6,7 +7,9 @@ const views = require('koa-views')
 const static = require('koa-static');
 const path = require('path');
 const mongoose = require('mongoose');
-require('babel-register')
+const config = require('./config/index');
+const connection = require('./config/connection');
+
 
 var cors = require('koa2-cors');
 // 中间间
@@ -16,20 +19,7 @@ const bodyparser = require('koa-bodyparser');
 const indexRouter = require('./routes/index');
 const accountRouter = require('./routes/account');
 const testRouter = require('./routes/test');
-
 const app = new Koa();
-const port = 3001;
-const db = 'mongodb://127.0.0.1:27017/koa_db';
-
-
-/** mongoose连接数据库 **/
-// 连接数据库 
-mongoose.connect(db,{useMongoClient: true}, (err) => {
-    if (err){
-        console.log(err);
-    }
-    console.log('数据库连接完成,地址为=> ' + db);
-});
 
 // 此处开始堆叠各种中间件
 
@@ -52,6 +42,8 @@ app.use(indexRouter.routes(), indexRouter.allowedMethods())
 app.use(accountRouter.routes(), accountRouter.allowedMethods())
 app.use(testRouter.routes(), testRouter.allowedMethods())
 
-app.listen(port, () => {
-    console.log('Success,listen in port ' + port);
+console.log(config.default);
+
+app.listen(config.default.serverPort, () => {
+    console.log('服务器创建成功 => localhost:' + config.default.serverPort)
 });
