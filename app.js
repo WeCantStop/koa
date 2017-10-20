@@ -10,7 +10,6 @@ const mongoose = require('mongoose');
 const config = require('./config/index');
 const connection = require('./config/connection');
 
-
 var cors = require('koa2-cors');
 // 中间间
 const loggerGenerator = require('./middlewear/logger');
@@ -41,8 +40,6 @@ app.use(cors());
 app.use(indexRouter.routes(), indexRouter.allowedMethods())
 app.use(accountRouter.routes(), accountRouter.allowedMethods())
 app.use(testRouter.routes(), testRouter.allowedMethods())
-
-console.log(config.default);
 
 app.listen(config.default.serverPort, () => {
     console.log('服务器创建成功 => localhost:' + config.default.serverPort)
