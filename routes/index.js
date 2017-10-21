@@ -1,28 +1,15 @@
-const Router = require('koa-router');
-const fs = require('fs');
-const indexRouter = new Router();
+import Router from 'koa-router';
+import home from './home';
+import account from './account';
+import test from './test';
+import api from './api';
 
-indexRouter.get('/', async(ctx, next) => {
-    await ctx.render('index', {
-        test: '测试title',
-        test2: '我是测试2'
-    })
-})
 
-indexRouter.get('/activity', (ctx, next) => {
-    ctx.body = '活动页';
-})
+const router = Router();
 
-indexRouter.get('/readFile', async(ctx, next) => {
-    console.log('start readFile');
-    await fs.readFile('./test-dir/test.json', 'utf-8', (err, res) => {
-        if (err) {
-            console.log(err);
-        }
-        console.log(res);
-        ctx.body = JSON.stringify(res);        
-        console.log('end readFile');        
-    })
-})
+router.use('/', home.routes(), home.allowedMethods());
+router.use('/account', account.routes(), account.allowedMethods());
+router.use('/test', test.routes(), test.allowedMethods());
+router.use('/api', api.routes(), api.allowedMethods());
 
-module.exports = indexRouter;
+module.exports = router;

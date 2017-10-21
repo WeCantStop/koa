@@ -1,14 +1,13 @@
 const Router = require('koa-router');
-const testRouter = new Router();
+const router = new Router();
 // constroller
 const UserController = require('../controller/user');
 
-// router 前缀
-testRouter.prefix('/test');
+import request from 'request';
 
-testRouter.post('/connect', UserController.addUser);
-testRouter.post('/getUser', UserController.getUser);
-testRouter.post('/delUser', UserController.delUser);
-testRouter.post('/updateUserDetail', UserController.updateUserDetail);
+router.post('/connect', UserController.addUser);
+router.post('/getUser', UserController.getUser);
+router.post('/delUser', UserController.delUser);
+router.post('/updateUserDetail', UserController.updateUserDetail);
 
-module.exports = testRouter;
+module.exports = router;

@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/WeCantStop/koa#readme",
   "dependencies": {
+    "axios": "^0.16.2",
     "babel-preset-env": "^1.6.0",
     "babel-register": "^6.26.0",
     "koa": "^2.3.0",
