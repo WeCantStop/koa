@@ -2,7 +2,6 @@ require('babel-register')
 const Koa = require('koa');
 // 使用generate中间件时候需要使用koa-convert封装一下
 const convert = require('koa-convert');
-const Router = require('koa-router');
 const views = require('koa-views')
 const static = require('koa-static');
 const path = require('path');
@@ -18,7 +17,7 @@ const bodyparser = require('koa-bodyparser');
 const index = require('./routes/index');
 const app = new Koa();
 
-// 此处开始堆叠各种中间件
+/** 此处开始堆叠各种中间件 **/
 
 // 调用静态资源
 app.use(static(path.join(__dirname, './static')));
