@@ -46,4 +46,10 @@ router.post('/banner', async (ctx, body) => {
     ctx.body = await request(books.library);
  })
 
+ // 电影详情
+ router.post('/movieDetail', async (ctx, body) => {
+    const movieId = ctx.request.body.id;
+    ctx.body = await request(theatre.movieDetail + movieId);
+ })
+
  module.exports = router;

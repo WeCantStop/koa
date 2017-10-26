@@ -7,7 +7,8 @@ module.exports = {
     theatre: {
         hot: 'https://m.douban.com/rexxar/api/v2/subject_collection/movie_showing/items?os=ios&start=0&count=8&loc_id=108288&_=0',
         FreeNew: 'https://m.douban.com/rexxar/api/v2/subject_collection/movie_free_stream/items?os=ios&start=0&count=8&loc_id=108288&_=0',
-        new: 'https://m.douban.com/rexxar/api/v2/subject_collection/movie_latest/items?os=ios&start=0&count=8&loc_id=108288&_=1508724169843' 
+        new: 'https://m.douban.com/rexxar/api/v2/subject_collection/movie_latest/items?os=ios&start=0&count=8&loc_id=108288&_=1508724169843',
+        movieDetail: 'https://api.douban.com/v2/movie/subject/'
     },
     books: {
         virtualHot: 'https://m.douban.com/rexxar/api/v2/subject_collection/book_fiction/items?os=ios&start=0&count=8&loc_id=0&_=0',
