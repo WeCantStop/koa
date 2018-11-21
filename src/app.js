@@ -1,7 +1,6 @@
 require('babel-register')
 const Koa = require('koa');
 // 使用generate中间件时候需要使用koa-convert封装一下
-const convert = require('koa-convert');
 const views = require('koa-views')
 const static = require('koa-static');
 const path = require('path');
@@ -25,7 +24,7 @@ app.use(views(path.join(__dirname, './views'), {
     extension: 'pug'
 }))
 // generator在中间件的调用
-app.use(convert(loggerGenerator()));
+app.use(loggerGenerator());
 // 获取post参数的中间件
 app.use(bodyparser());
 // 用来跨域的中间件
