@@ -1,2 +1,0 @@
-webpackJsonp([17],{Quw4:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var s={name:"Login",data:function(){return{isLoging:!1,account:"",password:""}},mounted:function(){"ROLE_SYSTEM"==window.global.role?this.$router.push("/user"):this.$router.push("/message")}},r={render:function(){var e=this.$createElement;return(this._self._c||e)("div",{staticClass:"login",attrs:{id:"login"}})},staticRenderFns:[]},u=n("VU/8")(s,r,!1,null,null,null);t.default=u.exports}});
-//# sourceMappingURL=17.js.map
