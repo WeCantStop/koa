@@ -1,5 +1,6 @@
 require('babel-register')
 const Koa = require('koa');
+const chalk = require('chalk');
 // 使用generate中间件时候需要使用koa-convert封装一下
 const views = require('koa-views')
 const static = require('koa-static');
@@ -33,5 +34,5 @@ app.use(cors());
 app.use(index.routes(), index.allowedMethods());
 
 app.listen(config.serverPort, () => {
-    console.log('服务器创建成功 => localhost:' + config.serverPort)
+    console.log(chalk.green(`服务器创建成功 => localhost: ${config.serverPort}`))
 });

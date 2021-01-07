@@ -3,8 +3,6 @@ const router = new Router();
 // constroller
 const UserController = require('../controller/user');
 
-import request from 'request';
-
 router.post('/connect', UserController.addUser);
 router.post('/getUser', UserController.getUser);
 router.post('/delUser', UserController.delUser);

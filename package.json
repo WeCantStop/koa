@@ -24,6 +24,7 @@
     "axios": "^0.16.2",
     "babel-preset-env": "^1.6.0",
     "babel-register": "^6.26.0",
+    "chalk": "^4.1.0",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-pug": "^3.0.0-2",
@@ -31,7 +32,8 @@
     "koa-static": "^4.0.1",
     "koa-views": "^6.0.2",
     "koa2-cors": "^2.0.3",
-    "mongoose": "^4.11.14"
+    "mongoose": "^4.11.14",
+    "mysql": "^2.18.1"
   },
   "devDependencies": {
     "@angular/cli": "^1.4.6",
