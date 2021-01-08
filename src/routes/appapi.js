@@ -5,7 +5,7 @@ const { successBody, errorBody } = require('../utils/resTemplate');
 const { checkReqBody } = require('../utils/reqValidate');
 
 router.get('/queryGradeList', async (ctx, next) => {
-  await db.exec('SELECT * FROM grade').then(res => {
+  await db.exec('SELECT id, name, leader FROM grade WHERE delete_flag != 1').then(res => {
     ctx.body = successBody(res);
   })
 });
@@ -15,7 +15,7 @@ router.post('/createGrade', async (ctx, next) => {
   if (checkReqBody({ name, leader })) {
     ctx.body = errorBody(`${checkReqBody({ name, leader })}不能为空`);
   } else {
-    await db.exec(`INSERT INTO grade(name, leader) VALUES("${name}", "${leader}");`).then(res => {
+    await db.exec(`INSERT INTO grade(name, leader, delete_flag) VALUES("${name}", "${leader}", 0);`).then(res => {
       ctx.body = successBody();
     })
   }
