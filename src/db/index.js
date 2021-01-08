@@ -1,28 +1,7 @@
-const mysql = require("mysql");
-const { config }  = require('./config');
+const { dbConfig } = require('./config');
+const Sequelize = require("sequelize");
 
-const pool = mysql.createPool(config);
+const { database, user, password, host, dialect, pool } = dbConfig;
+const sequelize = new Sequelize(database, user, password, { host, pool, dialect });
 
-// 查询
-const exec = (sql, values) => {
-  return new Promise((resolve, reject) => {
-    pool.getConnection((err, connection) => {
-      if (err) {
-        reject(err);
-      } else {
-        connection.query(sql, values, (err, rows) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(rows);
-          }
-          connection.release();
-        });
-      }
-    });
-  });
-};
-
-module.exports = {
-  exec
-};
+module.exports = { Sequelize, sequelize };

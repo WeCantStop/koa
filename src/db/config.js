@@ -1,9 +1,15 @@
-const config = {
+const dbConfig = {
   host: "localhost",
   user: "will",
   password: "apple",
   database: "school",
-  multipleStatements: true, //允许多条sql同时执行
+  dialect: 'mysql',
+  pool: {
+    max: 20,
+    min: 5,
+    acquire: 30000,
+    idle: 10000,
+  },
 };
 
-module.exports = { config };
+module.exports = { dbConfig };
