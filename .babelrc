@@ -1,9 +1,13 @@
 {
-    "presets": [
-      ["env", {
+  "presets": [
+    "stage-2",
+    [
+      "env",
+      {
         "targets": {
           "node": true
         }
-      }]
+      }
     ]
-  }
+  ]
+}

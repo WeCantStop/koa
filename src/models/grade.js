@@ -1,6 +1,6 @@
 const { sequelize, Sequelize } = require('../db')
 
-  const GradeModel = sequelize.define('Grade', {
+  const GradeModel = sequelize.define('grade', {
     name: {
       type: Sequelize.STRING,
       allowNull: false

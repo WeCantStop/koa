@@ -37,7 +37,7 @@
     "sequelize": "^6.3.5"
   },
   "devDependencies": {
-    "@angular/cli": "^1.4.6",
+    "babel-preset-stage-2": "^6.24.1",
     "nodemon": "^1.18.6"
   }
 }
