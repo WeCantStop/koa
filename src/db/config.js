@@ -2,7 +2,7 @@ const dbConfig = {
   host: "localhost",
   user: "will",
   password: "apple",
-  database: "school",
+  database: "employees",
   dialect: 'mysql',
   pool: {
     max: 20,
