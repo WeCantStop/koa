@@ -11,13 +11,20 @@ const moment = require('moment');
 class EmployController {
   // 分页查询员工列表
   async queryList(ctx, next) {
-    let { pageSize, pageNo } = ctx.request.query;
+    let { pageSize, pageNo, firstName, lastName } = ctx.request.query;
     const limit = Number(pageSize);
     const offset = Number((pageNo - 1) * pageSize);
+    const queryParams = {};
+    if (!!firstName) {
+      queryParams.firstName = firstName;
+    }
+    if (!!lastName) {
+      queryParams.lastName = lastName;
+    }
     
     try {
       const res = await EmployModel.findAndCountAll({ offset, limit,
-        where: {}
+        where: queryParams
       });
       const { count, rows } = JSON.parse(JSON.stringify(res));
 
@@ -39,16 +46,18 @@ class EmployController {
           }
         })
 
-        const deptName = await DepartmentModel.findAll({
-          attributes: ['deptName'],
-          where: {
-            deptNo: deptNo[0].dataValues.deptNo
-          }
-        })
+        if (deptNo[0]) {
+          const deptName = await DepartmentModel.findAll({
+            attributes: ['deptName'],
+            where: {
+              deptNo: deptNo[0].dataValues.deptNo
+            }
+          })
+          item.department = deptName[0].dataValues.deptName;
+        }
 
         item.salaries = salaries;
         item.titles = employTitle;
-        item.department = deptName[0].dataValues.deptName;
       }
     
       const responseData = {
