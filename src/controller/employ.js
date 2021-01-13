@@ -6,8 +6,10 @@ const { SalaryModel } =  require('../models/salary');
 const { EmployTitleModel } =  require('../models/employTitle');
 const { DepartEmpModel } =  require('../models/depart_emp');
 const { DepartmentModel } =  require('../models/department');
+const moment = require('moment');
 
 class EmployController {
+  // 分页查询员工列表
   async queryList(ctx, next) {
     let { pageSize, pageNo } = ctx.request.query;
     const limit = Number(pageSize);
@@ -53,13 +55,29 @@ class EmployController {
         pageNo: Number(pageNo),
         pageSize: Number(pageSize),
         total: count,
-        data: rows
+        list: rows
       }
       ctx.body = successBody(responseData);
     } catch (err) {
       console.log(err)
       ctx.body = errorBody(err)
     }
+  }
+
+  // 新增员工
+  async create(ctx, next) {
+    const { birthDate, firstName, lastName, gender } = ctx.request.body;
+    const maxEmpNo = await EmployModel.max('empNo');
+    const hireDate = moment().format('YYYY-MM-DD');
+    await EmployModel.create({
+      empNo: maxEmpNo + 1,
+      firstName,
+      lastName,
+      birthDate,
+      hireDate,
+      gender,
+    })
+    ctx.body = successBody();
   }
 }
 
