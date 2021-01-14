@@ -54,10 +54,17 @@ class EmployController {
             }
           })
           item.department = deptName[0].dataValues.deptName;
+        } else {
+          item.department = null;
         }
 
-        item.salaries = salaries;
-        item.titles = employTitle;
+        if (salaries.length) {
+          item.salary = salaries[salaries.length - 1].salary;
+        }
+
+        if (employTitle.length) {
+          item.title = employTitle[employTitle.length - 1].title;
+        }
       }
     
       const responseData = {
@@ -78,15 +85,43 @@ class EmployController {
     const { birthDate, firstName, lastName, gender } = ctx.request.body;
     const maxEmpNo = await EmployModel.max('empNo');
     const hireDate = moment().format('YYYY-MM-DD');
-    await EmployModel.create({
-      empNo: maxEmpNo + 1,
-      firstName,
-      lastName,
-      birthDate,
-      hireDate,
-      gender,
-    })
-    ctx.body = successBody();
+    try {
+      await EmployModel.create({
+        empNo: maxEmpNo + 1,
+        firstName,
+        lastName,
+        birthDate,
+        hireDate,
+        gender,
+      })
+      ctx.body = successBody();
+    } catch(err) {
+      ctx.body = errorBody(err)
+    }
+  }
+
+  async edit(ctx) {
+    const data = ctx.request.body;
+    const updateData = {};
+    for (const key in data) {
+      if (data[key]) {
+        updateData[key] = data[key];
+      }
+    }
+    if (!updateData.empNo) {
+      ctx.body = errorBody('empNo can not be null')
+    } else {
+      try {
+        await EmployModel.update(updateData, {
+          where: {
+            empNo: updateData.empNo
+          }
+        });
+        ctx.body = successBody();
+      } catch(err) {
+        ctx.body = errorBody();
+      }
+    }
   }
 }
 
